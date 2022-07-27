@@ -93,7 +93,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"bradesco mastercard\",\r\n    \"bandeira\": \"MASTERCARD\",\r\n    \"renda\": 5000,\r\n    \"limiteBasico\": 8000\r\n}",
+							"raw": "{\r\n    \"nome\": \"bradesco VISA\",\r\n    \"bandeira\": \"VISA\",\r\n    \"renda\": 5000,\r\n    \"limiteBasico\": 8000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -132,7 +132,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/cartoes?renda=3000",
+							"raw": "http://localhost:8080/cartoes?renda=5000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -144,7 +144,7 @@
 							"query": [
 								{
 									"key": "renda",
-									"value": "3000"
+									"value": "5000"
 								}
 							]
 						}
@@ -183,6 +183,84 @@
 									"key": "cpf",
 									"value": "98994769005"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Avaliador de Crédito",
+			"item": [
+				{
+					"name": "Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes-credito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes-credito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Situacao-Cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes-credito/situacao-cliente?cpf=98994769005",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes-credito",
+								"situacao-cliente"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "98994769005"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Avaliacao Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"98994769005\",\r\n    \"renda\": 5000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/avaliacoes-credito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avaliacoes-credito"
 							]
 						}
 					},
