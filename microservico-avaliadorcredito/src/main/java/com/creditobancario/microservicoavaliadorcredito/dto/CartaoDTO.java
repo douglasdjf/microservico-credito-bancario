@@ -1,30 +1,23 @@
-package com.creditobancario.microservicocartoes.dto;
+package com.creditobancario.microservicoavaliadorcredito.dto;
 
-import com.creditobancario.microservicocartoes.domain.entity.enums.BandeiraCartao;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Data
 public class CartaoDTO {
 
     private Long id;
-
-    @NotBlank
     private String nome;
-
-    @NotNull
-    private BandeiraCartao bandeira;
-
-    @NotNull
+    private String bandeira;
     private BigDecimal renda;
-
-    @NotNull
     private BigDecimal limiteBasico;
 }

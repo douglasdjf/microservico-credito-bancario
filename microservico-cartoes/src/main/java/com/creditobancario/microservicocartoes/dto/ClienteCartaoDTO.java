@@ -10,23 +10,16 @@ import java.math.BigDecimal;
 
 
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 public class ClienteCartaoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String cpf;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_cartao")
-    private Cartao cartao;
+    private CartaoDTO cartao;
 
     private BigDecimal limite;
 }

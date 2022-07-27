@@ -58,7 +58,7 @@ public class CartoesResource {
 
     @GetMapping(params = "cpf")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<ClienteCartaoDTO>> get(@NotBlank  @RequestParam("cpf") String cpf){
+    public ResponseEntity<List<ClienteCartaoDTO>> getCatoesPorCpf(@RequestParam("cpf") String cpf){
         List<ClienteCartaoDTO> clienteCartaoDTOS = clienteCartaoService.listarCartoesPorCPF(cpf);
         if(CollectionUtils.isEmpty(clienteCartaoDTOS))
             return ResponseEntity.noContent().build();
