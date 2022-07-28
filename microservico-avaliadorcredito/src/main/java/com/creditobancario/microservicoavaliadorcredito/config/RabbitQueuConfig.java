@@ -1,4 +1,4 @@
-package com.creditobancario.microservicocartoes.config;
+package com.creditobancario.microservicoavaliadorcredito.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +16,6 @@ public class RabbitQueuConfig {
 
     @Value("${mq.bindings.emissao-cartoes-bindings}")
     public static String emissaoCartaoBinding;
-
-
 
     @Bean
     Queue emissaoCartaoQueue(){
@@ -39,4 +37,5 @@ public class RabbitQueuConfig {
                 .with(emissaoCartaoBinding)
                 .noargs();
     }
+
 }

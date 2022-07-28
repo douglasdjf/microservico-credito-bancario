@@ -5,14 +5,16 @@ import com.creditobancario.microservicoavaliadorcredito.clients.ClienteApi;
 import com.creditobancario.microservicoavaliadorcredito.dto.*;
 import com.creditobancario.microservicoavaliadorcredito.exception.DadosClienteNotFoundException;
 import com.creditobancario.microservicoavaliadorcredito.exception.ErroComunicacaoMicroservicoException;
+import com.creditobancario.microservicoavaliadorcredito.exception.ErrorSolicitacaoCartaoException;
+import com.creditobancario.microservicoavaliadorcredito.publisher.SolicitacaoEmissaoCartaoPublisher;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +25,9 @@ public class AvaliadorCreditoService {
 
     @Autowired
     private CartoesClient cartoesClient;
+
+    @Autowired
+    private SolicitacaoEmissaoCartaoPublisher emissaoCartaoPublisher;
 
     public SituacaoClienteDTO obterSituacaoCliente(String cpf) throws DadosClienteNotFoundException, ErroComunicacaoMicroservicoException {
         try {
@@ -76,6 +81,17 @@ public class AvaliadorCreditoService {
                 throw new DadosClienteNotFoundException();
             }
             throw  new ErroComunicacaoMicroservicoException(ex.getMessage(),ex.status());
+        }
+    }
+
+    public ProtocoloSolicitacaoCartao solicitarEmissaoCartao(DadosSolicitacaoEmissaoCartao dadosSolicitacaoEmissaoCartao){
+
+        try{
+            emissaoCartaoPublisher.solicitarCartao(dadosSolicitacaoEmissaoCartao);
+            var protocolo = UUID.randomUUID().toString();
+            return ProtocoloSolicitacaoCartao.builder().protocolo(protocolo).build();
+        }catch (Exception ex){
+                throw new ErrorSolicitacaoCartaoException(ex.getMessage());
         }
     }
 }
