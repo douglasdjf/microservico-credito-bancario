@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitQueuConfig {
 
     @Value("${mq.queues.emissao-cartoes}")
-    public static String emissaoCartaoQueue;
+    private String emissaoCartaoQueue;
 
     @Value("${mq.exchanges.emissao-cartoes-exchange}")
-    public static String emissaoCartaoExchange;
+    private String emissaoCartaoExchange;
 
     @Value("${mq.bindings.emissao-cartoes-bindings}")
-    public static String emissaoCartaoBinding;
+    private String emissaoCartaoBinding;
 
 
 

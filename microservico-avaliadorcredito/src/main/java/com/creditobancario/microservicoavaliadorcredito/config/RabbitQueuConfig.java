@@ -9,33 +9,11 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitQueuConfig {
 
     @Value("${mq.queues.emissao-cartoes}")
-    public static String emissaoCartaoQueue;
-
-    @Value("${mq.exchanges.emissao-cartoes-exchange}")
-    public static String emissaoCartaoExchange;
-
-    @Value("${mq.bindings.emissao-cartoes-bindings}")
-    public static String emissaoCartaoBinding;
+    private String emissaoCartaoQueue;
 
     @Bean
     Queue emissaoCartaoQueue(){
         return new Queue(emissaoCartaoQueue,true);
-    }
-
-    @Bean
-    Exchange emissaoCartaoExchange(){
-        return ExchangeBuilder.directExchange(emissaoCartaoExchange)
-                .durable(true)
-                .build();
-    }
-
-    @Bean
-    Binding emissaoCartaoBinding(){
-        return BindingBuilder
-                .bind(emissaoCartaoQueue())
-                .to(emissaoCartaoExchange())
-                .with(emissaoCartaoBinding)
-                .noargs();
     }
 
 }

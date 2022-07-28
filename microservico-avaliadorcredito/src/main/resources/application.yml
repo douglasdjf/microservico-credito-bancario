@@ -20,7 +20,3 @@ eureka:
 mq:
   queues:
     emissao-cartoes: emissao-cartoes
-  exchanges:
-    emissao-cartoes-exchange: emissao-cartoes-exchange
-  bindings:
-    emissao-cartoes-bindings: emissao-cartoes-bindings
