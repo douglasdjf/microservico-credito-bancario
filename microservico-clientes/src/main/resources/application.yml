@@ -13,4 +13,16 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+logging:
+  file:
+    name: ./logs/log-file-cliente.log
+
+
 

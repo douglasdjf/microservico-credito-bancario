@@ -24,3 +24,8 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://admin:admin@localhost:8761/eureka
+
+
+logging:
+  file:
+    name: ./logs/log-file-gateway.log

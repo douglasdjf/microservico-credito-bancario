@@ -25,3 +25,14 @@ mq:
     emissao-cartoes-exchange: emissao-cartoes-exchange
   bindings:
     emissao-cartoes-bindings: emissao-cartoes-bindings
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+logging:
+  file:
+    name: ./logs/log-file-cartoes.log
