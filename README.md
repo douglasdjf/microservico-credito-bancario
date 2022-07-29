@@ -116,3 +116,13 @@ docker run --name ms-gateway -p 8080:8080 --network ms-network -e EUREKA_SERVER=
 ### o arquivo 'keyclok-realm-export' pode ser importando no realm do Keyclok pois já está configurado para o cliente do projeto.
 
 ### OBS: depois da exportação e configuração é necessário ir no menu Realm Settings e atualizar na aba General o campo Frontend URL para a URL do docker : http://keyclock:8080
+
+
+
+# Várias Instâncias de um microserviço no docker
+
+### Basta apenas remover o parâmetro --name do container e adicionar o -P para porta aleatório. Exemplo:
+
+```
+docker run -P --network ms-network  -e RABBITMQ_SERVER=rabbitmq-3.8 -e EUREKA_SERVER=eureka-server ms-cartoes:1.0 
+```
