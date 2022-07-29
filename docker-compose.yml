@@ -1,4 +1,10 @@
 version: '3.8'
+
+networks:
+  ms-network:
+    name: ms-network
+    driver: bridge
+
 services:
   rabbitmq:
     container_name: rabbitmq-3.8
@@ -12,6 +18,8 @@ services:
       - RABBITMQ_ERLANG_COOKIE=secret_pass
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
+    networks:
+       - ms-network
   keyclock:
     container_name: keyclock
     image: quay.io/keycloak/keycloak:18.0.0
@@ -24,8 +32,11 @@ services:
       - KEYCLOAK_ADMIN_PASSWORD=admin
       - KEYCLOAK_LOGLEVEL=INFO
       - ROOT_LOGLEVEL=INFO
+    networks:
+      - ms-network
     command:
       - start-dev
 
 volumes:
   rabbitmq:
+
