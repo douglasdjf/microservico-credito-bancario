@@ -114,3 +114,5 @@ docker run --name ms-gateway -p 8080:8080 --network ms-network -e EUREKA_SERVER=
 # Importar Realm Keyclock
 
 ### o arquivo 'keyclok-realm-export' pode ser importando no realm do Keyclok pois já está configurado para o cliente do projeto.
+
+### OBS: depois da exportação e configuração é necessário ir no menu Realm Settings e atualizar na aba General o campo Frontend URL para a URL do docker : http://keyclock:8080
