@@ -7,4 +7,9 @@ FROM openjdk:17
 WORKDIR /app
 COPY --from=build ./app/target/*.jar ./app.jar
 EXPOSE 8761
+
+ARG EUREKA_SERVER=localhost
+ARG KEYCLOAK_SERVER=localhost
+ARG KEYCLOAK_PORT=8081
+
 ENTRYPOINT java -jar app.jar

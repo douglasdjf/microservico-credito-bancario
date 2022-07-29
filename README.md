@@ -1,6 +1,13 @@
 
+# Inicialização do RabbitMQ e Keycloak
 
-## Configuração Docker
+```
+docker compose up
+```
+
+### OBS: o comando anterior ja cria o network 'ms-network'
+
+# Configuração Build Docker
 
 
 ## Criar uma Network para a comunicação entre os containers
@@ -75,3 +82,35 @@ docker build --tag ms-clientes:1.0 .
 ```
 docker run --name ms-clientes --network ms-network -e EUREKA_SERVER=eureka-server ms-clientes:1.0 
 ```
+
+
+
+
+## 5. Build do MicroServico Gateway
+
+### 4.1 dentro da pasta principal do projeto microservico-gateway executar comando:
+
+```
+docker build --tag ms-gateway:1.0 .
+```
+
+### 4.2 Executar imagem criada anteriormente
+
+```
+docker run --name ms-gateway -p 8080:8080 --network ms-network -e EUREKA_SERVER=eureka-server -e KEYCLOAK_SERVER=keyclock -e KEYCLOAK_PORT=8080 ms-gateway:1.0 
+```
+
+
+
+
+# Acessos referências
+
+### 1. RabbitMQ: http://localhost:8761/
+### 2. KeyClok: http://localhost:8081/
+### 3. API (Gateway): http://localhost:8080/
+
+
+
+# Importar Realm Keyclock
+
+### o arquivo 'keyclok-realm-export' pode ser importando no realm do Keyclok pois já está configurado para o cliente do projeto.
