@@ -39,7 +39,7 @@ docker build --tag ms-avaliador-credito:1.0 .
 ### 2.2 Executar imagem criada anteriormente
 
 ```
-docker run --name avaliador-credito --network ms-network ms-avaliador-credito:1.0
+docker run --name ms-avaliador-credito --network ms-network -e RABBITMQ_SERVER=rabbitmq-3.8 -e EUREKA_SERVER=eureka-server ms-avaliador-credito:1.0
 ```
 
 
@@ -57,12 +57,8 @@ docker build --tag ms-cartoes:1.0 .
 ### 3.2 Executar imagem criada anteriormente
 
 ```
-docker run --name ms-cartoes --network ms-network ms-cartoes:1.0
+docker run --name ms-cartoes --network ms-network  -e RABBITMQ_SERVER=rabbitmq-3.8 -e EUREKA_SERVER=eureka-server ms-cartoes:1.0 
 ```
-
-
-
-
 
 
 
@@ -77,5 +73,5 @@ docker build --tag ms-clientes:1.0 .
 ### 4.2 Executar imagem criada anteriormente
 
 ```
-docker run --name ms-clientes --network ms-network ms-clientes:1.0
+docker run --name ms-clientes --network ms-network -e EUREKA_SERVER=eureka-server ms-clientes:1.0 
 ```
