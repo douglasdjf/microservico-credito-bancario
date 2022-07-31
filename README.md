@@ -1,8 +1,10 @@
 
 # Inicialização do RabbitMQ e Keycloak
 
+O comando deve ser executado onde estiver o arquivo docker-compose.yml:
+
 ```
-docker compose up
+docker-compose up
 ```
 
 ### OBS: o comando anterior ja cria o network 'ms-network'
@@ -126,3 +128,30 @@ docker run --name ms-gateway -p 8080:8080 --network ms-network -e EUREKA_SERVER=
 ```
 docker run -P --network ms-network  -e RABBITMQ_SERVER=rabbitmq-3.8 -e EUREKA_SERVER=eureka-server ms-cartoes:1.0 
 ```
+
+
+# Profiles de Ambiente 
+
+
+
+### Fora do container 
+
+A execução é de forma manual dos microserviços, ou seja, dentro de uma IDE.
+
+### Dentro do Containers
+
+Para que seja executado as variáveis de ambienete e a comunicação entre os microserviços containizados é necessário que o arquivo Dockerfile seja alterado :
+
+de
+```
+ENTRYPOINT java -jar app.jar
+```
+
+para
+
+```
+ENTRYPOINT java -jar -Dspring.profiles.active=prod app.jar
+```
+
+
+### OBS: por default está  definido o profile de prod
